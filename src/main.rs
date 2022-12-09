@@ -15,7 +15,10 @@ fn main(){
     println!("Secret Number: {secret_number}");
     println!("You guessed: {guess}");
 
-    let guess = guess.trim().parse::<u32>().expect("Please type a number!");
+    let guess:u32 = match guess.trim().parse(){
+        Ok(num) => num,
+        Err(_) => continue,
+    };
 
     match guess.cmp(&secret_number) {
         Ordering::Less => {
